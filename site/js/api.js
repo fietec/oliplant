@@ -1,4 +1,4 @@
-const URL = "http://127.0.0.1:8787/plants";
+const URL = "https://worker.oliplant.workers.dev/plants";
 
 export async function getPlants(){
 	const response = await fetch(URL, {method: "GET"});
