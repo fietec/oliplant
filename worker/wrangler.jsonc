@@ -1,0 +1,15 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "worker",
+	"compatibility_date": "2025-09-27",
+	"observability": {
+		"enabled": true
+	},
+	"main" : "index.js",
+	"kv_namespaces": [
+		{
+			"binding": "PLANTS",
+			"id": "f827320339bd4a389d8c01aa0eaf5412"
+		}
+	]
+}

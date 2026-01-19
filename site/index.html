@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+  <head>
+	<meta charset="UTF-8">
+	<title>My Plants</title>
+	<link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+	<h1>Pflanzen</h1>
+	<div id="plant-container"></div>
+	<div id="editModal" class="modal">
+	  <div class="modal-content">
+		<span class="close">&times;</span>
+		<h3>Pflanze bearbeiten</h3>
+		<form id="editPlantForm">
+		  <input type="hidden" name="oldName" required>
+		  <label>
+			Name:
+			<input type="text" name="name" required>
+		  </label>
+		  <label>
+			Bild:
+			<input type="text" name="image" requried>
+		  </label>
+		  <label>
+			Tage zwischen Gießungen:
+			<input type="number" name="daysUntilWatering" required>
+		  </label>
+		  <label>
+			Tage zwischen Düngungen:
+			<input type="number" name="daysUntilFertilization" required>
+		  </label>
+		  <button type="submit">Save</button>
+		</form>
+		<button id="deleteButton">Delete</button>
+	  </div>
+	</div>
+	<div class="button-row">
+      <button id="addButton">Neu</button>
+      <button id="clearButton">Leeren</button>
+	</div>
+	<script type="module" src="js/main.js"></script>
+  </body>
+</html>
+	
