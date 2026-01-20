@@ -4,7 +4,7 @@
     grid-template-columns: repeat(auto-fit, 250px); /* fixed card width */
     gap: 40px;                    /* spacing between cards */
     justify-content: start;        /* left-align cards */
-    
+
 	width: 100%;
     margin: 30px auto;             /* center container horizontally */
     padding: 0 10px;               /* padding inside container */
@@ -15,7 +15,7 @@
 .plant-card {
     width: 250px;                 /* fixed width */
     height: 400px;                /* optional fixed height */
-    background-color: #f9f9f9;
+    background-color: #f0f0f0;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     padding: 16px;
@@ -114,7 +114,7 @@
 /* ===== Modal styles ===== */
 .modal {
     display: none;
-    position: fixed; 
+    position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
