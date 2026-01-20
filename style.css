@@ -15,6 +15,7 @@
 .plant-card {
     width: 250px;                 /* fixed width */
     height: 400px;                /* optional fixed height */
+    background-color: #F5F5DC;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     padding: 16px;
