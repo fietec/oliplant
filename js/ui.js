@@ -96,8 +96,6 @@ function renderPlant(plant){
 }
 
 export function renderPlants(plants){
-	console.log("rendering plants..");
-	console.log(plants);
 	const container = document.getElementById("plant-container");
 	container.innerHTML = "";
 	plants.forEach(plant => {

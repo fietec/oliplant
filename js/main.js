@@ -8,7 +8,6 @@ const form = document.getElementById("editPlantForm");
 const addButton = document.getElementById("addButton");
 const clearButton = document.getElementById("clearButton");
 
-// Function to open modal and populate current plant data
 function openEditModal(plant) {
 	modal.style.display = "block";
 	if (plant != null){
@@ -18,7 +17,6 @@ function openEditModal(plant) {
 		form.daysUntilWatering.value = plant["days-until-next-watering"];
 		form.daysUntilFertilization.value = plant["days-until-next-fertilization"];
 		
-		// Save the plant object for submission
 		form.dataset.plantName = plant.name;
 	} else{
 		form.oldName.value = "";
@@ -31,12 +29,10 @@ function openEditModal(plant) {
 	}
 }
 
-// Close modal when X clicked
 closeBtn.onclick = () => {
 	modal.style.display = "none";
 };
 
-// Close modal if clicking outside content
 window.onclick = (e) => {
 	if (e.target == modal) {
 		modal.style.display = "none";
@@ -44,7 +40,6 @@ window.onclick = (e) => {
 };
 
 async function load(){
-	console.log("loading page..");
 	await refresh();
 
 	form.addEventListener("submit", async (e) => {
@@ -85,8 +80,16 @@ async function load(){
 		}
 	});
 
-	addButton.addEventListener("click", add);
-	clearButton.addEventListener("click", clear);
+	addButton.addEventListener("click", async (e) => {
+		openEditModal(null);
+	});
+	
+	clearButton.addEventListener("click", async (e) => {
+		if (confirm("Möchtest du wirklich alle Pflanzen entfernen?")){
+			await clearPlants();
+			await refresh();
+		}
+	});
 }
 
 async function refresh(){
@@ -97,10 +100,8 @@ async function refresh(){
 		btn.addEventListener("click", () => {
 			const plantCard = btn.closest(".plant-card");
 			const plantName = plantCard.querySelector("h3").textContent;
-			console.log(plantName);
 			
 			const plant = plants.find(p => p.name === plantName);
-			console.log(plant);
 			if (typeof plant !== 'undefined'){
 				openEditModal(plant);
 			}
@@ -110,13 +111,12 @@ async function refresh(){
 		btn.addEventListener("click", async (e) => {
 			const plantCard = btn.closest(".plant-card");
 			const plantName = plantCard.querySelector("h3").textContent;
-			console.log(plantName);
 			
 			const plant = plants.find(p => p.name === plantName);
 			if (typeof plant !== 'undefined'){
 				plant["last-watered"] = dateToDateString(new Date());
 				await editPlant(plant.name, plant);
-				refresh();
+				await refresh();
 			}
 		});
 	});
@@ -124,26 +124,15 @@ async function refresh(){
 		btn.addEventListener("click", async (e) =>{
 			const plantCard = btn.closest(".plant-card");
 			const plantName = plantCard.querySelector("h3").textContent;
-			console.log(plantName);
 			
 			const plant = plants.find(p => p.name === plantName);
 			if (typeof plant !== 'undefined'){
 				plant["last-fertilized"] = dateToDateString(new Date());
 				await editPlant(plant.name, plant);
-				refresh();
+				await refresh();
 			}
 		});
 	});
 }
 
-async function add(){
-	openEditModal(null);
-}
-
-async function clear(){
-	if (confirm("Möchtest du wirklich alle Pflanzen entfernen?")){
-		await clearPlants();
-		await refresh();
-	}
-}
 window.addEventListener("DOMContentLoaded", load);

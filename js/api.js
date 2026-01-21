@@ -1,12 +1,14 @@
 const URL = "https://worker.oliplant.workers.dev/plants";
 
 export async function getPlants(){
+	console.log("Fetching plants..");
 	const response = await fetch(URL, {method: "GET"});
 	const json = await response.json();
 	return json.plants;
 }
 
 export async function clearPlants(){
+	console.log("Clearing plants..");
 	const response = await fetch(URL, {
 		method: "DELETE",
 		body: JSON.stringify({name: "ALL"}),
@@ -18,7 +20,7 @@ export async function clearPlants(){
 }
 
 export async function deletePlant(plantName){
-	console.log("Deleting " + plantName);
+	console.log("Deleting plant " + plantName);
 	const response = await fetch(URL, {
 		method: "DELETE",
 		body: JSON.stringify({name: plantName}),
@@ -30,9 +32,7 @@ export async function deletePlant(plantName){
 }
 
 export async function editPlant(oldName, plant){
-	console.log("editing");
-	console.log(oldName);
-	console.log(plant);
+	console.log("Editing plant " + oldName);
 	const response = await fetch(URL, {
 		method: "PUT",
 		body: JSON.stringify({name: oldName, update: plant}),
@@ -44,6 +44,7 @@ export async function editPlant(oldName, plant){
 }
 
 export async function addPlant(plant){
+	console.log("Adding plant " + plant.name);
 	const response = await fetch(URL, {
 		method: "POST",
 		body: JSON.stringify(plant),
