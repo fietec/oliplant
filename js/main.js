@@ -74,9 +74,11 @@ async function load(){
 	deleteButton.addEventListener("click", async (e) => {
 		const plantName = form.dataset.plantName;
 		if (plantName !== "newPlant"){
-			await deletePlant(plantName);
-			modal.style.display = "none";
-			refresh();
+			if (confirm("Möchtes du wirklich diese Pflanze entfernen?")){
+				await deletePlant(plantName);
+				await refresh();
+				modal.style.display = "none";
+			}
 		}
 	});
 
