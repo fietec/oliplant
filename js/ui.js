@@ -83,7 +83,7 @@ function renderPlant(plant){
 	if ('notes' in plant && plant.notes !== ""){
 		notesp.innerHTML = plant.notes;
 	} else{
-		notesp.innerHTML = "No notes..";
+		notesp.innerHTML = "Keine Notizen..";
 		notes.className = "plant-notes empty";
 	}
 	notes.appendChild(notesp);
