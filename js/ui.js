@@ -76,6 +76,19 @@ function renderPlant(plant){
 	fertilizationDiv.appendChild(fertilizationStatus);
 	card.appendChild(fertilizationDiv);
 
+	// Notes
+	const notes = document.createElement("div");
+	notes.className = "plant-notes";
+	const notesp = document.createElement("p");
+	if ('notes' in plant && plant.notes !== ""){
+		notesp.innerHTML = plant.notes;
+	} else{
+		notesp.innerHTML = "No notes..";
+		notes.className = "plant-notes empty";
+	}
+	notes.appendChild(notesp);
+	card.appendChild(notes);
+
 	// Actions
 	const actions = document.createElement("div");
 	actions.className = "actions";

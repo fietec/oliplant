@@ -16,6 +16,7 @@ function openEditModal(plant) {
 		form.image.value = plant.image;
 		form.daysUntilWatering.value = plant["days-until-next-watering"];
 		form.daysUntilFertilization.value = plant["days-until-next-fertilization"];
+		form.notes.value = 'notes' in plant ? plant.notes : "";
 		
 		form.dataset.plantName = plant.name;
 	} else{
@@ -24,6 +25,7 @@ function openEditModal(plant) {
 		form.image.value = "";
 		form.daysUntilWatering.value = 1;
 		form.daysUntilFertilization.value = 1;
+		form.notes.value = "";
 
 		form.dataset.plantName = "newPlant";
 	}
@@ -55,6 +57,7 @@ async function load(){
 				"days-until-next-fertilization": parseInt(form.daysUntilFertilization.value),
 				"last-fertilized": dateToDateString(today),
 				"last-watered": dateToDateString(today),
+				notes: form.notes.value,
 			};
 			await addPlant(newPlant);
 
@@ -63,7 +66,8 @@ async function load(){
 				name: form.name.value,
 				image: form.image.value,
 				"days-until-next-watering": parseInt(form.daysUntilWatering.value),
-				"days-until-next-fertilization": parseInt(form.daysUntilFertilization.value)
+				"days-until-next-fertilization": parseInt(form.daysUntilFertilization.value),
+				notes: form.notes.value,
 			};
 			await editPlant(oldName, newPlant);
 		}
@@ -92,6 +96,22 @@ async function load(){
 			await refresh();
 		}
 	});
+	
+	document.addEventListener("click", (e) => {
+		const notes = e.target.closest(".plant-notes");
+		if (notes && !notes.classList.contains("expanded")){
+			notes.classList.toggle("expanded");
+			e.stopPropagation();
+		}
+
+		// close all others
+		document.querySelectorAll(".plant-notes.expanded").forEach(n => {
+			if (n !== notes){
+				n.classList.remove("expanded");
+			}
+		});
+	});
+
 }
 
 async function refresh(){

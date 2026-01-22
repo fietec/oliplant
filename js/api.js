@@ -1,4 +1,12 @@
-const URL = "https://worker.oliplant.workers.dev/plants";
+function getApiUrl(){
+	console.log(location.hostname);
+	const base = (location.hostname !== "localhost")
+		  ? "http://localhost:8787"
+	      : "https://worker.oliplant.workers.dev";
+	return base + "/plants";
+}
+
+const URL = getApiUrl();
 
 export async function getPlants(){
 	console.log("Fetching plants..");
@@ -20,7 +28,7 @@ export async function clearPlants(){
 }
 
 export async function deletePlant(plantName){
-	console.log("Deleting plant " + plantName);
+	console.log("Deleting plant " + plantName + "..");
 	const response = await fetch(URL, {
 		method: "DELETE",
 		body: JSON.stringify({name: plantName}),
@@ -32,7 +40,7 @@ export async function deletePlant(plantName){
 }
 
 export async function editPlant(oldName, plant){
-	console.log("Editing plant " + oldName);
+	console.log("Editing plant " + oldName + "..");
 	const response = await fetch(URL, {
 		method: "PUT",
 		body: JSON.stringify({name: oldName, update: plant}),
@@ -44,7 +52,7 @@ export async function editPlant(oldName, plant){
 }
 
 export async function addPlant(plant){
-	console.log("Adding plant " + plant.name);
+	console.log("Adding plant " + plant.name + "..");
 	const response = await fetch(URL, {
 		method: "POST",
 		body: JSON.stringify(plant),
