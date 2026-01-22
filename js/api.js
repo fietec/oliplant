@@ -1,6 +1,6 @@
 function getApiUrl(){
 	console.log(location.hostname);
-	const base = (location.hostname !== "localhost")
+	const base = (location.hostname === "localhost")
 		  ? "http://localhost:8787"
 	      : "https://worker.oliplant.workers.dev";
 	return base + "/plants";
