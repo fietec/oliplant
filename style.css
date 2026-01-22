@@ -170,6 +170,7 @@ h1 {
 .plant-notes p {
     margin: 0;
     line-height: 1.4;
+	white-space: pre-wrap;
 }
 
 .plant-notes.empty p{
